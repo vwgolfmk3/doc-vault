@@ -1,0 +1,11 @@
+{
+  "name": "doc-vault-prototype",
+  "version": "1.0.0",
+  "description": "Interactive Agentic Document Infrastructure Prototype for Doc Vault",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Doc Vault",
+  "license": "MIT"
+}

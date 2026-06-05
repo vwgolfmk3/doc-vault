@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doc Vault | Personal Data Sovereignty for Financial Services</title>
+  <!-- Google Fonts: Outfit and Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 3C11 4.5 5 4.5 5 4.5V13C5 20.5 11 26.5 16 29C21 26.5 27 20.5 27 13V4.5C27 4.5 21 4.5 16 3Z%22 fill=%22none%22 stroke=%22%2310b981%22 stroke-width=%222.5%22/><rect x=%2210%22 y=%2215%22 width=%2212%22 height=%229%22 rx=%222%22 fill=%22%2310b981%22/><path d=%22M12 16V12.5C12 10.29 13.79 8.5 16 8.5C18.21 8.5 20 10.29 20 12.5V16%22 stroke=%22%2310b981%22 stroke-width=%221.8%22/></svg>">
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Gradient representing safety (emerald) and trust (cyan/blue) -->
+              <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#10b981" />
+                <stop offset="50%" stop-color="#059669" />
+                <stop offset="100%" stop-color="#3b82f6" />
+              </linearGradient>
+              <!-- Glow filter for outer shield -->
+              <filter id="safetyGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComponentTransfer in="blur" result="glow1">
+                  <feFuncA type="linear" slope="0.6" />
+                </feComponentTransfer>
+                <feMerge>
+                  <feMergeNode in="glow1" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <!-- Glowing outer safety shield -->
+            <path d="M16 3C11 4.5 5 4.5 5 4.5V13C5 20.5 11 26.5 16 29C21 26.5 27 20.5 27 13V4.5C27 4.5 21 4.5 16 3Z" 
+                  fill="none" 
+                  stroke="url(#shieldGradient)" 
+                  stroke-width="2.5" 
+                  stroke-linejoin="round" 
+                  filter="url(#safetyGlow)" />
+            <!-- Encrypted Padlock Shackle -->
+            <path d="M12 16V12.5C12 10.29 13.79 8.5 16 8.5C18.21 8.5 20 10.29 20 12.5V16" 
+                  stroke="url(#shieldGradient)" 
+                  stroke-width="1.8" 
+                  stroke-linecap="round" />
+            <!-- Padlock Body -->
+            <rect x="10" y="15" width="12" height="9" rx="2" fill="url(#shieldGradient)" />
+            <!-- Keyhole Pin -->
+            <circle cx="16" cy="18.5" r="1.5" fill="#0b0c10" />
+            <path d="M16 19.5V22" stroke="#0b0c10" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Doc Vault</h1>
+          <span>Data Sovereignty</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-tagline">
+        "Personal data sovereignty by default."
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="vault">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span>Customer Vault</span>
+        </button>
+        <button class="nav-item" data-tab="enterprise">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+          <span>Enterprise Policies</span>
+        </button>
+        <button class="nav-item" data-tab="simulator">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          <span>Handshake Simulator</span>
+          <span class="badge pulse-glow">Sandbox</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-indicator">
+          <span class="status-dot green"></span>
+          <span>Agentic Agent Online</span>
+        </div>
+        <div class="version">v1.2.0 (Prototype)</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Action Bar -->
+      <header class="top-bar">
+        <div class="page-title-section">
+          <h2 id="current-tab-title">Customer Vault</h2>
+          <p id="current-tab-desc" class="subtitle">Secure custodian repository of your personal verification records.</p>
+        </div>
+        
+        <div class="user-profile">
+          <div class="notification-trigger">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span class="notification-badge"></span>
+          </div>
+          <div class="avatar-circle">JS</div>
+          <span class="user-name">John Smith</span>
+        </div>
+      </header>
+
+      <!-- VIEW 1: CUSTOMER VAULT -->
+      <section id="tab-vault" class="tab-content active">
+        
+        <!-- Vault Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>
+            </div>
+            <div class="stat-details">
+              <h3>Custody Status</h3>
+              <p class="value font-glow-purple">100% Sovereign</p>
+              <p class="trend green">Zero Bank-Side Logs Held</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon emerald">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+            </div>
+            <div class="stat-details">
+              <h3>Active Handshakes</h3>
+              <p class="value text-emerald" id="active-handshakes-count">1 Connected</p>
+              <p class="trend font-light">Enforced by Smart Contract</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <div class="stat-details">
+              <h3>Shared Files</h3>
+              <p class="value text-amber" id="shared-files-count">3 Files</p>
+              <p class="trend warning">Pending Auto-Purge</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div class="stat-details">
+              <h3>Purges Completed</h3>
+              <p class="value text-blue" id="purged-files-count">14 Documents</p>
+              <p class="trend green">Sovereignty Retained</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vault-split-layout">
+          <!-- Documents Inventory Grid -->
+          <div class="vault-inventory">
+            <div class="section-header">
+              <h3>Sovereign Document Store</h3>
+              <p>Direct encrypted files in your custodian folder. No external entity can access without a signed handshake.</p>
+            </div>
+            
+            <div class="document-grid" id="document-grid">
+              <!-- Cards dynamically generated by app.js -->
+            </div>
+
+            <!-- Upload Area -->
+            <div class="upload-zone" id="upload-zone">
+              <input type="file" id="file-input" style="display: none;" accept=".pdf,.png,.jpg,.jpeg">
+              <div class="upload-graphic">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="upload-cloud">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+              </div>
+              <div class="upload-text">
+                <h4>Upload Document</h4>
+                <p>Drag and drop or click to upload PDF/JPEG files</p>
+                <span class="upload-disclaimer">Files will be simulated and scanned instantly on client side</span>
+              </div>
+            </div>
+
+            <!-- Path Simulation Control Panel -->
+            <div class="simulation-upload-panel glass-card" style="margin-top: 20px; padding: 1.25rem;">
+              <div class="section-header" style="margin-bottom: 12px;">
+                <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 4px;">Pathways & Context Test Sandbox</h4>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4;">Test how Doc Vault processes clear vs. ambiguous documents, and how custom metadata overrides resolve system mappings.</p>
+              </div>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button class="btn btn-success btn-sm" id="btn-upload-happy" style="flex: 1; min-width: 180px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Happy Path (Driver's License)
+                </button>
+                <button class="btn btn-danger btn-sm" id="btn-upload-difficult" style="flex: 1; min-width: 180px; background-color: var(--accent-rose);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  Difficult Path (Ambiguous Bill)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Integrations & Sharing State -->
+          <div class="vault-shares-panel">
+            <div class="section-header">
+              <h3>Active Shared Handshakes</h3>
+              <p>Real-time view of services having temporary read-only access to your records.</p>
+            </div>
+
+            <div class="handshake-cards-list" id="active-handshakes-list">
+              <!-- Active shares list generated by app.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: ENTERPRISE POLICIES -->
+      <section id="tab-enterprise" class="tab-content">
+        <div class="enterprise-container">
+          <div class="intro-alert info-alert">
+            <div class="alert-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            </div>
+            <div class="alert-message">
+              <strong>Enterprise Integration Schema:</strong> Doc Vault shifts document custody from the institution's databases back to the customer. When a service integrates, they publish their document requirements and data retention contracts. The customer agrees to these policies, which are executed automatically on the provider's application state.
+            </div>
+          </div>
+
+          <div class="enterprise-policies-layout">
+            
+            <!-- Policy Configurations -->
+            <div class="policy-config-pane">
+              <div class="section-header">
+                <h3>Retention Contract Configurations</h3>
+                <p>Configure custom rules for various service types and integration channels. These policies are presented as legal Terms & Conditions in the Handshake.</p>
+              </div>
+
+              <!-- Tabs for Service Type -->
+              <div class="service-type-tabs">
+                <button class="service-tab-btn active" data-service="home_loan">Home Loan Policy</button>
+                <button class="service-tab-btn" data-service="car_loan">Car Loan Policy</button>
+                <button class="service-tab-btn" data-service="credit_card">Credit Card Policy</button>
+              </div>
+
+              <!-- Policy Content Wrapper -->
+              <div class="policy-details-card glass-card">
+                <div class="policy-meta">
+                  <div class="policy-header-row">
+                    <span class="badge blue" id="policy-channel-badge">Multiple Channels</span>
+                    <h4 id="policy-service-name">Home Loan Application Policy</h4>
+                  </div>
+                  <p class="policy-desc" id="policy-service-desc">Multi-channel home loan assessment requiring extensive financial and identity verifications.</p>
+                </div>
+
+                <div class="policy-editor-section">
+                  <h5>Document Specific Retention Handshake Schema</h5>
+                  <div class="policy-rules-list" id="policy-rules-list">
+                    <!-- Loaded dynamically via JS -->
+                  </div>
+                </div>
+
+                <div class="policy-actions">
+                  <button class="btn btn-secondary" id="reset-policy-btn">Reset Defaults</button>
+                  <button class="btn btn-primary" id="save-policy-btn">Update Retention Schema</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Workflow Systems Status -->
+            <div class="workflow-info-pane">
+              <div class="section-header">
+                <h3>Disparate Systems Compliance</h3>
+                <p>Doc Vault maps standard compliance criteria across legacy channels (Broker, CRM, Branch App) standardizing compliance treatments.</p>
+              </div>
+
+              <div class="legacy-systems-grid">
+                <div class="legacy-card glass-card">
+                  <div class="card-title-row">
+                    <span class="status-indicator-dot online"></span>
+                    <h4>Broker Portal (API Integration)</h4>
+                  </div>
+                  <p class="legacy-desc">Uses modern REST APIs to retrieve documents. Requires long evaluation period due to manual broker assessment. Relies heavily on income evidence.</p>
+                  <div class="compliance-tag">Auto-purges triggered via webhooks</div>
+                </div>
+
+                <div class="legacy-card glass-card">
+                  <div class="card-title-row">
+                    <span class="status-indicator-dot online"></span>
+                    <h4>Contact Centre (CRM Panel)</h4>
+                  </div>
+                  <p class="legacy-desc">Direct-to-bank customer service workflows. Agents view docs in read-only sandbox frames. Document download disabled to enforce sovereignty.</p>
+                  <div class="compliance-tag">Zero persistent cache allowed</div>
+                </div>
+
+                <div class="legacy-card glass-card">
+                  <div class="card-title-row">
+                    <span class="status-indicator-dot online"></span>
+                    <h4>Branch Banker (Legacy System)</h4>
+                  </div>
+                  <p class="legacy-desc">Branch staff verify identity records face-to-face via tablet upload. Strict compliance mandates that identity data must be deleted instantly after check-off.</p>
+                  <div class="compliance-tag">Immediate Post-Verification Purge</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: HANDSHAKE SIMULATOR -->
+      <section id="tab-simulator" class="tab-content">
+        <div class="simulator-wrapper">
+          
+          <!-- Wizard Steps Navigator -->
+          <div class="wizard-steps">
+            <div class="w-step active" id="w-step-1" data-step="1">
+              <span class="w-number">1</span>
+              <span class="w-label">Select Journey</span>
+            </div>
+            <div class="w-step-line"></div>
+            <div class="w-step" id="w-step-2" data-step="2">
+              <span class="w-number">2</span>
+              <span class="w-label">Agentic Match</span>
+            </div>
+            <div class="w-step-line"></div>
+            <div class="w-step" id="w-step-3" data-step="3">
+              <span class="w-number">3</span>
+              <span class="w-label">Retention Handshake</span>
+            </div>
+            <div class="w-step-line"></div>
+            <div class="w-step" id="w-step-4" data-step="4">
+              <span class="w-number">4</span>
+              <span class="w-label">Live Execution</span>
+            </div>
+          </div>
+
+          <!-- STEP 1: SELECT JOURNEY -->
+          <div class="step-panel active" id="sim-step-1">
+            <div class="step-intro text-center">
+              <h3>Initiate a Financial Application Journey</h3>
+              <p class="subtitle max-w-600">Choose a service provider and application type. Notice how different workflows adapt document requirements and retention policies dynamically.</p>
+            </div>
+
+            <div class="journey-selection-grid">
+              
+              <!-- Journey Card 1 -->
+              <div class="journey-card" data-journey="home_loan_broker">
+                <div class="journey-badge">Broker Portal</div>
+                <div class="journey-icon home">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <h3>Apex Mortgages</h3>
+                <p class="journey-loan-type">Home Loan (Broker Channel)</p>
+                <p class="journey-desc">Requires high verification verification: Primary ID, Secondary ID, and 2 Pay Slips. Long underwriting assessment (3 minutes simulated).</p>
+                <div class="journey-requirements">
+                  <span class="req-tag">1x Primary ID</span>
+                  <span class="req-tag">1x Secondary ID</span>
+                  <span class="req-tag">2x Payslips</span>
+                </div>
+                <button class="btn btn-primary btn-block select-journey-btn">Select Apex Mortgages</button>
+              </div>
+
+              <!-- Journey Card 2 -->
+              <div class="journey-card" data-journey="car_loan_branch">
+                <div class="journey-badge">Branch Tablet</div>
+                <div class="journey-icon car">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="22" height="13" rx="2" ry="2"></rect><path d="M12 20h.01"></path><path d="M17 20h.01"></path><path d="M7 20h.01"></path><path d="M16 16v4H8v-4"></path></svg>
+                </div>
+                <h3>Horizon Auto</h3>
+                <p class="journey-loan-type">Car Loan (Branch Banking)</p>
+                <p class="journey-desc">Facilitated in-branch by a banker. Requires Primary ID and proof of income (1 Pay Slip). Moderately fast evaluation (1.5 minutes simulated).</p>
+                <div class="journey-requirements">
+                  <span class="req-tag">1x Primary ID</span>
+                  <span class="req-tag">1x Payslip</span>
+                </div>
+                <button class="btn btn-primary btn-block select-journey-btn">Select Horizon Auto</button>
+              </div>
+
+              <!-- Journey Card 3 -->
+              <div class="journey-card" data-journey="cc_mobile">
+                <div class="journey-badge">Mobile API</div>
+                <div class="journey-icon card">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                </div>
+                <h3>Nova Credit</h3>
+                <p class="journey-loan-type">Fast-Track Credit Card</p>
+                <p class="journey-desc">Instant mobile application. Requires only a Primary ID. Instant decisions. Retention handshake executes immediately after card decision.</p>
+                <div class="journey-requirements">
+                  <span class="req-tag">1x Primary ID</span>
+                </div>
+                <button class="btn btn-primary btn-block select-journey-btn">Select Nova Credit</button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- STEP 2: AGENTIC MATCH -->
+          <div class="step-panel" id="sim-step-2">
+            <div class="split-pane-simulator">
+              
+              <!-- Service Requirements Checklist -->
+              <div class="simulator-side-panel glass-card">
+                <div class="panel-header">
+                  <div class="service-logo-placeholder" id="agentic-service-logo">AN</div>
+                  <div>
+                    <h4 id="agentic-service-title">Apex Mortgages</h4>
+                    <span class="text-muted subtitle">Requested via Broker Workflow</span>
+                  </div>
+                </div>
+                
+                <div class="service-requirements-checklist">
+                  <h5>Enterprise Verification Requirements</h5>
+                  <ul class="req-checklist-items" id="requirements-checklist-list">
+                    <!-- Dynamic Checklist -->
+                  </ul>
+                </div>
+
+                <div class="agent-activity-box">
+                  <h5>Agentic Activity Log</h5>
+                  <div class="agent-log-console" id="agent-log-console">
+                    <p class="console-line system">[System]: Ready to initiate handshake matching...</p>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary btn-block" id="trigger-agent-match-btn">Run Doc Vault Agentic Match</button>
+              </div>
+
+              <!-- Visual Mapping Board -->
+              <div class="simulator-main-board glass-card" id="agentic-mapping-board">
+                <div class="board-header">
+                  <h4>Agentic Mapping Matrix</h4>
+                  <span class="badge purple">AI Matcher</span>
+                </div>
+
+                <!-- Simulation Visual Board -->
+                <div class="mapping-visualization">
+                  <!-- User Vault Node -->
+                  <div class="vis-node user-node" id="user-vault-node">
+                    <div class="node-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v22h18V2z"></path><circle cx="12" cy="11" r="3"></circle></svg>
+                    </div>
+                    <span>My Vault</span>
+                  </div>
+
+                  <!-- Connection Lines Canvas -->
+                  <div class="connecting-canvas-container">
+                    <svg class="connecting-canvas" id="connecting-svg">
+                      <!-- Render SVG connecting curves in js -->
+                    </svg>
+                  </div>
+
+                  <!-- Enterprise Service Node -->
+                  <div class="vis-node enterprise-node" id="enterprise-workflow-node">
+                    <div class="node-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg>
+                    </div>
+                    <span id="enterprise-node-name">Apex API</span>
+                  </div>
+                </div>
+
+                <div class="visual-matcher-status" id="matcher-status-bar">
+                  <div class="spinner-small" style="display:none;" id="agentic-spinner"></div>
+                  <p id="matcher-status-text">Click "Run Doc Vault Agentic Match" to begin mapping files from your vault to the application rules.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="step-actions">
+              <button class="btn btn-secondary" id="back-to-step-1">Back</button>
+              <button class="btn btn-primary" id="proceed-to-step-3" disabled>Generate Handshake Terms</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: RETENTION HANDSHAKE -->
+          <div class="step-panel" id="sim-step-3">
+            <div class="handshake-contract-panel">
+              <div class="handshake-banner">
+                <div class="handshake-shield">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shield-svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h3>Sovereign Retention Handshake</h3>
+                <p class="subtitle">Review the dynamic legal and technical terms for data transmission to the provider.</p>
+              </div>
+
+              <div class="handshake-split-view">
+                <!-- Traditional Vs Doc Vault -->
+                <div class="handshake-comparison-box">
+                  <div class="comparison-column traditional">
+                    <h4>Traditional Cloud Custody</h4>
+                    <p class="comp-description">Under standard cloud file sharing systems, your files are saved permanently in bank silos.</p>
+                    <ul class="comp-bullets">
+                      <li><span>✕</span> Institutional ownership of files</li>
+                      <li><span>✕</span> Infinite data retention by default</li>
+                      <li><span>✕</span> High data breach risk footprint</li>
+                      <li><span>✕</span> Undefined deletion policies</li>
+                    </ul>
+                  </div>
+
+                  <div class="comparison-column sovereign">
+                    <h4>Doc Vault Handshake</h4>
+                    <p class="comp-description text-emerald">Dynamic tokenized verification with service-side self-executing policies.</p>
+                    <ul class="comp-bullets">
+                      <li><span>✓</span> 100% User Ownership & Audit</li>
+                      <li><span>✓</span> Enforced temporary cached access</li>
+                      <li><span>✓</span> Minimizes data breach liability</li>
+                      <li><span>✓</span> Automated cryptographic purging</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Terms Contract Sheet -->
+                <div class="handshake-contract-sheet glass-card">
+                  <div class="contract-seal-logo">Doc Vault Handshake</div>
+                  <div class="contract-body">
+                    <h4>DATA SHARING & RETENTION AGREEMENT</h4>
+                    <div class="contract-parties-row">
+                      <div><strong>Custodian:</strong> John Smith (Sovereign Vault #US-88371)</div>
+                      <div><strong>Receiver:</strong> <span id="contract-receiver-name">Apex Mortgages</span></div>
+                    </div>
+                    
+                    <p class="contract-intro-text">
+                      By authorizing this Handshake, you grant the receiver temporary access to verify your files. The receiver legally and programmatically commits to the following specific retention policies:
+                    </p>
+
+                    <table class="contract-policies-table">
+                      <thead>
+                        <tr>
+                          <th>Document Class</th>
+                          <th>Shared Document</th>
+                          <th>Retention Treatment</th>
+                          <th>Action Trigger</th>
+                        </tr>
+                      </thead>
+                      <tbody id="contract-policies-tbody">
+                        <!-- Populated dynamically -->
+                      </tbody>
+                    </table>
+
+                    <div class="contract-legal-clause">
+                      <p><strong>Note on Execution:</strong> These deletion routines are automated. If the assessment process completes before the timers expire (Approve/Reject), the non-audit assets are immediately purged ahead of schedule.</p>
+                    </div>
+
+                    <div class="consent-checkbox-row">
+                      <label class="custom-checkbox-container">
+                        <input type="checkbox" id="consent-checkbox">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">I consent to the dynamic terms of this retention policy and authorize the agentic transfer.</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn btn-secondary" id="back-to-step-2">Back</button>
+              <button class="btn btn-success" id="proceed-to-step-4" disabled>Sign & Accept Handshake</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: LIVE COMPLIANCE EXECUTION -->
+          <div class="step-panel" id="sim-step-4">
+            
+            <div class="live-tracker-layout">
+              <!-- Left side: User sovereign vault -->
+              <div class="sovereign-vault-side glass-card">
+                <div class="panel-header-badge">My Custodian Vault</div>
+                <div class="side-title-section text-center">
+                  <div class="icon-sovereign-shield">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shield-green"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  </div>
+                  <h3>Customer Repository</h3>
+                  <p class="text-emerald text-sm">Long-term master records remain safe and untouched.</p>
+                </div>
+
+                <div class="sim-vault-files-list" id="sim-vault-master-files">
+                  <!-- Lists master documents in user possession -->
+                </div>
+              </div>
+
+              <!-- Center: Handshake link -->
+              <div class="sim-link-center">
+                <div class="handshake-line-pulse">
+                  <div class="pulse-node"></div>
+                </div>
+                <div class="simulation-controls glass-card">
+                  <h5>Simulation Control Panel</h5>
+                  
+                  <div class="decision-buttons">
+                    <button class="btn btn-success btn-sm btn-block" id="sim-btn-approve">Approve Application</button>
+                    <button class="btn btn-danger btn-sm btn-block" id="sim-btn-reject">Reject Application</button>
+                  </div>
+
+                  <div class="simulation-time-controls">
+                    <h6>Time Acceleration</h6>
+                    <button class="btn btn-secondary btn-xs" id="sim-time-ff">Fast Forward 30s</button>
+                  </div>
+
+                  <button class="btn btn-secondary btn-block btn-sm" id="reset-simulator-btn" style="margin-top: 15px;">Reset Journey</button>
+                </div>
+              </div>
+
+              <!-- Right side: Enterprise storage -->
+              <div class="enterprise-storage-side glass-card">
+                <div class="panel-header-badge warning">Enterprise Cache</div>
+                <div class="side-title-section text-center">
+                  <div class="icon-server">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line></svg>
+                  </div>
+                  <h3 id="enterprise-cache-title">Apex Server</h3>
+                  <p class="text-amber text-sm" id="enterprise-cache-status">Processing Assessment...</p>
+                </div>
+
+                <div class="sim-enterprise-files-list" id="sim-enterprise-cache-files">
+                  <!-- Lists copies of files on enterprise server with timers -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Audit Trail Console -->
+            <div class="audit-trail-pane glass-card">
+              <div class="audit-header">
+                <h4>Cryptographic Compliance Audit Trail</h4>
+                <span class="badge blue">Immutable Ledger</span>
+              </div>
+              <div class="audit-ledger-console" id="audit-ledger-console">
+                <p class="ledger-line"><span class="ledger-time">12:00:00</span> <span class="ledger-tag handshake">HANDSHAKE_INITIATED</span> Consent signed. Token session opened for applicant John Smith.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Document Details Modal -->
+  <div class="modal-backdrop" id="doc-modal">
+    <div class="modal-card glass-card modal-lg">
+      <div class="modal-header">
+        <h3 id="modal-doc-title">Document Metadata</h3>
+        <button class="modal-close" id="close-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body-split">
+        <!-- Left: Metadata & Customisation -->
+        <div class="modal-col-left">
+          <h4>Customisation & Metadata</h4>
+          <div class="form-group">
+            <label for="modal-custom-name">Custom Document Label</label>
+            <input type="text" id="modal-custom-name" class="modal-input">
+          </div>
+          <div class="form-group">
+            <label for="modal-class-override">Document Class (System Override)</label>
+            <select id="modal-class-override" class="modal-input">
+              <option value="Primary Identity">Primary Identity</option>
+              <option value="Secondary Identity">Secondary Identity</option>
+              <option value="Income Proof">Income Proof</option>
+              <option value="Financial Audit">Financial Audit</option>
+              <option value="Ambiguous - Class Refinement Needed">Ambiguous - Class Refinement Needed</option>
+            </select>
+          </div>
+          <div class="metadata-grid" id="modal-metadata-grid" style="margin-top: 10px; margin-bottom: 0;">
+            <!-- Populated dynamically -->
+          </div>
+          
+          <button class="btn btn-primary btn-sm btn-block" id="modal-save-changes-btn" style="margin-top: 15px;">Save Customisations</button>
+        </div>
+        
+        <!-- Right: AI Contexts & Serving Potentials -->
+        <div class="modal-col-right">
+          <h4>Auto-Classified Context Potential</h4>
+          <div class="potential-context-list" id="modal-context-list">
+            <!-- Dynamic context list -->
+          </div>
+
+          <h4 style="margin-top: 10px;">Internal Analytics: prospective use cases</h4>
+          <div class="analytics-suggestions-list" id="modal-analytics-list">
+            <!-- Dynamic analytics suggestions -->
+          </div>
+          
+          <div class="security-seal-box" style="margin-top: auto; padding: 8px 12px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shield-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <div>
+              <strong>Cryptographic Custodian Certificate</strong>
+              <p id="modal-doc-hash" class="hash-text" style="font-size: 0.65rem;">SHA-256: 3a2c9e7821fb80cd43e...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
