@@ -245,138 +245,291 @@
       50% { border-color: rgba(16, 185, 129, 0.6); }
       100% { border-color: rgba(16, 185, 129, 0.2); }
     }
+
+    /* Cohort Selector Header Styles */
+    .pitch-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem 0.5rem 3rem;
+      background: transparent;
+      z-index: 100;
+      width: 100%;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo .logo-text {
+      font-family: var(--font-primary);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #ffffff, var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cohort-selector-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: hsla(225, 20%, 8%, 0.6);
+      border: 1px solid var(--border-color);
+      padding: 5px 6px 5px 14px;
+      border-radius: 99px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .selector-label {
+      font-family: var(--font-primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .cohort-selector {
+      display: flex;
+      gap: 4px;
+    }
+
+    .cohort-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .cohort-btn:hover {
+      color: var(--text-primary);
+      background: hsla(225, 20%, 15%, 0.5);
+    }
+
+    .cohort-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--shadow-glow-purple);
+    }
+
+    /* Transition Animation for Cohort Content Switching */
+    .slide-content-wrapper {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide-content-wrapper.fade-out {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.99);
+    }
+
+    /* Mobile scaling for the header */
+    @media (max-width: 768px) {
+      .pitch-header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 1rem 1rem 0.5rem 1rem;
+      }
+      .cohort-selector-container {
+        padding: 4px 4px 4px 10px;
+        max-width: 100%;
+      }
+      .selector-label {
+        display: none;
+      }
+      .cohort-btn {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+      }
+    }
   </style>
 </head>
 <body class="pitch-body">
+
+  <!-- Floating Cohort Selector Header -->
+  <header class="pitch-header">
+    <div class="header-logo">
+      <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="headerShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10b981" />
+            <stop offset="100%" stop-color="#3b82f6" />
+          </linearGradient>
+        </defs>
+        <path d="M16 3C11 4.5 5 4.5 5 4.5V13C5 20.5 11 26.5 16 29C21 26.5 27 20.5 27 13V4.5C27 4.5 21 4.5 16 3Z" fill="none" stroke="url(#headerShieldGrad)" stroke-width="2.5" />
+      </svg>
+      <span class="logo-text">Doc Vault</span>
+    </div>
+    
+    <div class="cohort-selector-container">
+      <span class="selector-label">Tailored For:</span>
+      <div class="cohort-selector">
+        <button class="cohort-btn active" data-cohort="investors">Investors</button>
+        <button class="cohort-btn" data-cohort="forum">Industry Forum</button>
+        <button class="cohort-btn" data-cohort="consumers">Consumers</button>
+        <button class="cohort-btn" data-cohort="engineers">Engineers</button>
+      </div>
+    </div>
+  </header>
 
   <!-- Deck Slides Container -->
   <div class="deck-container">
 
     <!-- SLIDE 1: COVER -->
     <div class="slide active" id="slide-1">
-      <div class="logo-icon" style="width: 72px; height: 72px; margin-bottom: 2rem;">
-        <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="pitchShield" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#10b981" />
-              <stop offset="100%" stop-color="#3b82f6" />
-            </linearGradient>
-            <filter id="pitchGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          <path d="M16 3C11 4.5 5 4.5 5 4.5V13C5 20.5 11 26.5 16 29C21 26.5 27 20.5 27 13V4.5C27 4.5 21 4.5 16 3Z" fill="none" stroke="url(#pitchShield)" stroke-width="2.5" stroke-linejoin="round" filter="url(#pitchGlow)" />
-          <path d="M12 16V12.5C12 10.29 13.79 8.5 16 8.5C18.21 8.5 20 10.29 20 12.5V16" stroke="url(#pitchShield)" stroke-width="1.8" />
-          <rect x="10" y="15" width="12" height="9" rx="2" fill="url(#pitchShield)" />
-        </svg>
-      </div>
-      <h1 class="keyword-hero">Doc Vault</h1>
-      <p class="slide-subtitle">Personal Data Sovereignty by Default. Redefining B2B verification infrastructure.</p>
-      
-      <div class="bullet-keywords">
-        <span class="keyword-pill">Zero Trust Ingestion</span>
-        <span class="keyword-pill">Self-Executing Purging</span>
-        <span class="keyword-pill">Custody Shift</span>
-      </div>
+      <div class="slide-content-wrapper">
+        <div class="logo-icon" style="width: 72px; height: 72px; margin-bottom: 2rem;">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="pitchShield" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#10b981" />
+                <stop offset="100%" stop-color="#3b82f6" />
+              </linearGradient>
+              <filter id="pitchGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <path d="M16 3C11 4.5 5 4.5 5 4.5V13C5 20.5 11 26.5 16 29C21 26.5 27 20.5 27 13V4.5C27 4.5 21 4.5 16 3Z" fill="none" stroke="url(#pitchShield)" stroke-width="2.5" stroke-linejoin="round" filter="url(#pitchGlow)" />
+            <path d="M12 16V12.5C12 10.29 13.79 8.5 16 8.5C18.21 8.5 20 10.29 20 12.5V16" stroke="url(#pitchShield)" stroke-width="1.8" />
+            <rect x="10" y="15" width="12" height="9" rx="2" fill="url(#pitchShield)" />
+          </svg>
+        </div>
+        <h1 class="keyword-hero">Doc Vault</h1>
+        <p class="slide-subtitle">Personal Data Sovereignty by Default. Redefining B2B verification infrastructure.</p>
+        
+        <div class="bullet-keywords">
+          <span class="keyword-pill">Zero Trust Ingestion</span>
+          <span class="keyword-pill">Self-Executing Purging</span>
+          <span class="keyword-pill">Custody Shift</span>
+        </div>
 
-      <a href="app.html" class="demo-spotlight" target="_blank">
-        <span>Launch Live Application</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
+        <a href="app.html" class="demo-spotlight" target="_blank">
+          <span>Launch Live Application</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
     </div>
 
     <!-- SLIDE 2: THE PROBLEM -->
     <div class="slide" id="slide-2">
-      <h1 class="keyword-hero danger">Hoarding Liability</h1>
-      <p class="slide-subtitle">Traditional cloud-sharing systems turn customer verification files into perpetual attack vectors.</p>
-      
-      <div class="bullet-keywords">
-        <span class="keyword-pill red-border">Infinite Data Retention</span>
-        <span class="keyword-pill red-border">Breach Blast Radius</span>
-        <span class="keyword-pill red-border">Legacy Database Bloat</span>
-        <span class="keyword-pill red-border">Regulatory Penalty Risk</span>
-      </div>
+      <div class="slide-content-wrapper">
+        <h1 class="keyword-hero danger">Hoarding Liability</h1>
+        <p class="slide-subtitle">Traditional cloud-sharing systems turn customer verification files into perpetual attack vectors.</p>
+        
+        <div class="bullet-keywords">
+          <span class="keyword-pill red-border">Infinite Data Retention</span>
+          <span class="keyword-pill red-border">Breach Blast Radius</span>
+          <span class="keyword-pill red-border">Legacy Database Bloat</span>
+          <span class="keyword-pill red-border">Regulatory Penalty Risk</span>
+        </div>
 
-      <a href="app.html?tab=simulator&step=3" class="demo-spotlight" target="_blank">
-        <span>Spotlight: The Traditional vs Sovereign Ingestion Contrast</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
+        <a href="app.html?tab=simulator&step=3" class="demo-spotlight" target="_blank">
+          <span>Spotlight: The Traditional vs Sovereign Ingestion Contrast</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
     </div>
 
     <!-- SLIDE 3: THE SOLUTION -->
     <div class="slide" id="slide-3">
-      <h1 class="keyword-hero success">Custody Shift</h1>
-      <p class="slide-subtitle">Moving sovereign custody to the customer. Eliminating B2B database storage liabilities.</p>
-      
-      <div class="bullet-keywords">
-        <span class="keyword-pill green-border">Master Records in Vault</span>
-        <span class="keyword-pill green-border">Temporary Verified Access</span>
-        <span class="keyword-pill green-border">Compliance Auto-Shield</span>
-        <span class="keyword-pill green-border">Cryptographic Consent</span>
-      </div>
+      <div class="slide-content-wrapper">
+        <h1 class="keyword-hero success">Custody Shift</h1>
+        <p class="slide-subtitle">Moving sovereign custody to the customer. Eliminating B2B database storage liabilities.</p>
+        
+        <div class="bullet-keywords">
+          <span class="keyword-pill green-border">Master Records in Vault</span>
+          <span class="keyword-pill green-border">Temporary Verified Access</span>
+          <span class="keyword-pill green-border">Compliance Auto-Shield</span>
+          <span class="keyword-pill green-border">Cryptographic Consent</span>
+        </div>
 
-      <a href="app.html?tab=vault&action=happy_upload" class="demo-spotlight" target="_blank">
-        <span>Spotlight: Happy Path OCR Upload & Verification Potential</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
+        <a href="app.html?tab=vault&action=happy_upload" class="demo-spotlight" target="_blank">
+          <span>Spotlight: Happy Path OCR Upload & Verification Potential</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
     </div>
 
     <!-- SLIDE 4: AGENTIC MATCHER -->
     <div class="slide" id="slide-4">
-      <h1 class="keyword-hero purple">Agentic Matcher</h1>
-      <p class="slide-subtitle">AI resolving disparate workflow rules dynamically across bank channels.</p>
-      
-      <div class="bullet-keywords">
-        <span class="keyword-pill purple-border">Multi-Channel Mapping</span>
-        <span class="keyword-pill purple-border">General Tag Resolution</span>
-        <span class="keyword-pill purple-border">Context-Aware Ingestion</span>
-        <span class="keyword-pill purple-border">Metadata Manual Maneuver</span>
-      </div>
+      <div class="slide-content-wrapper">
+        <h1 class="keyword-hero purple">Agentic Matcher</h1>
+        <p class="slide-subtitle">AI resolving disparate workflow rules dynamically across bank channels.</p>
+        
+        <div class="bullet-keywords">
+          <span class="keyword-pill purple-border">Multi-Channel Mapping</span>
+          <span class="keyword-pill purple-border">General Tag Resolution</span>
+          <span class="keyword-pill purple-border">Context-Aware Ingestion</span>
+          <span class="keyword-pill purple-border">Guided Metadata Override</span>
+        </div>
 
-      <a href="app.html?tab=simulator&step=2" class="demo-spotlight" target="_blank">
-        <span>Spotlight: Agentic Matcher & Mapping Simulator</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
+        <a href="app.html?tab=simulator&step=2" class="demo-spotlight" target="_blank">
+          <span>Spotlight: Agentic Matcher & Mapping Simulator</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
     </div>
 
     <!-- SLIDE 5: RETENTION HANDSHAKE -->
     <div class="slide" id="slide-5">
-      <h1 class="keyword-hero success">Dynamic Handshake</h1>
-      <p class="slide-subtitle">Self-executing compliance policies that automatically shred files post-verification.</p>
-      
-      <div class="bullet-keywords">
-        <span class="keyword-pill green-border">Channel-Specific Clocks</span>
-        <span class="keyword-pill green-border">Automatic Cache Shredding</span>
-        <span class="keyword-pill green-border">Immutable Audit Ledger</span>
-        <span class="keyword-pill green-border">Decision-Triggered Purge</span>
-      </div>
+      <div class="slide-content-wrapper">
+        <h1 class="keyword-hero success">Dynamic Handshake</h1>
+        <p class="slide-subtitle">Self-executing compliance policies that automatically shred files post-verification.</p>
+        
+        <div class="bullet-keywords">
+          <span class="keyword-pill green-border">Channel-Specific Clocks</span>
+          <span class="keyword-pill green-border">Automatic Cache Shredding</span>
+          <span class="keyword-pill green-border">Immutable Audit Ledger</span>
+          <span class="keyword-pill green-border">Decision-Triggered Purge</span>
+        </div>
 
-      <a href="app.html?tab=simulator&step=4" class="demo-spotlight" target="_blank">
-        <span>Spotlight: Live Handshake Timer & Purging Visualizer</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
+        <a href="app.html?tab=simulator&step=4" class="demo-spotlight" target="_blank">
+          <span>Spotlight: Live Handshake Timer & Purging Visualizer</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
     </div>
 
     <!-- SLIDE 6: THE BUSINESS CASE -->
     <div class="slide" id="slide-6">
-      <h1 class="keyword-hero blue">Trust Utility</h1>
-      <p class="slide-subtitle">Scale network effects. Verified once, ingestible instantly across infinite channels.</p>
-      
-      <div class="bullet-keywords">
-        <span class="keyword-pill">Zero CAC Acquisition</span>
-        <span class="keyword-pill">Multi-Service Reuse</span>
-        <span class="keyword-pill">Logistics & Heavy Transport</span>
-        <span class="keyword-pill">B2B Compliance Shields</span>
-      </div>
+      <div class="slide-content-wrapper">
+        <h1 class="keyword-hero blue">Trust Utility</h1>
+        <p class="slide-subtitle">Scale network effects. Verified once, ingestible instantly across infinite channels.</p>
+        
+        <div class="bullet-keywords">
+          <span class="keyword-pill">Zero CAC Acquisition</span>
+          <span class="keyword-pill">Multi-Service Reuse</span>
+          <span class="keyword-pill">Logistics & Heavy Transport</span>
+          <span class="keyword-pill">B2B Compliance Shields</span>
+        </div>
 
-      <a href="app.html?tab=vault&action=difficult_upload" class="demo-spotlight" target="_blank">
-        <span>Spotlight: Test Difficult Path & Manual Ingestion Resolution</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
+        <a href="app.html?tab=vault&action=difficult_upload" class="demo-spotlight" target="_blank">
+          <span>Spotlight: Test Difficult Path & Manual Ingestion Resolution</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
     </div>
 
   </div>
@@ -405,6 +558,136 @@
   </footer>
 
   <script>
+    // Cohort Data Configuration
+    const cohortData = {
+      investors: {
+        'slide-1': {
+          subtitle: "Personal Data Sovereignty by Default. Redefining B2B verification infrastructure.",
+          pills: ["Zero Trust Ingestion", "Self-Executing Purging", "Custody Shift"]
+        },
+        'slide-2': {
+          title: "Hoarding Liability",
+          subtitle: "Traditional cloud-sharing systems turn customer verification files into perpetual attack vectors.",
+          pills: ["Infinite Data Retention", "Breach Blast Radius", "Legacy Database Bloat", "Regulatory Penalty Risk"]
+        },
+        'slide-3': {
+          title: "Custody Shift",
+          subtitle: "Moving sovereign custody to the customer. Eliminating B2B database storage liabilities.",
+          pills: ["Master Records in Vault", "Temporary Verified Access", "Compliance Auto-Shield", "Cryptographic Consent"]
+        },
+        'slide-4': {
+          title: "Agentic Matcher",
+          subtitle: "AI resolving disparate workflow rules dynamically across bank channels.",
+          pills: ["Multi-Channel Mapping", "General Tag Resolution", "Context-Aware Ingestion", "Guided Metadata Override"]
+        },
+        'slide-5': {
+          title: "Dynamic Handshake",
+          subtitle: "Self-executing compliance policies that automatically shred files post-verification.",
+          pills: ["Channel-Specific Clocks", "Automatic Cache Shredding", "Immutable Audit Ledger", "Decision-Triggered Purge"]
+        },
+        'slide-6': {
+          title: "Trust Utility",
+          subtitle: "Scale network effects. Verified once, ingestible instantly across infinite channels.",
+          pills: ["Zero CAC Acquisition", "Multi-Service Reuse", "Logistics & Heavy Transport", "B2B Compliance Shields"]
+        }
+      },
+      forum: {
+        'slide-1': {
+          subtitle: "Seamless compliance integration. Reducing underwriting and identity verification cycles.",
+          pills: ["Fast Underwriting", "Standardized Ingestion", "Regulatory Protection"]
+        },
+        'slide-2': {
+          title: "Compliance Risk",
+          subtitle: "Institutional document silos create massive security liabilities, GDPR/CCPA risk, and database bloat.",
+          pills: ["CCPA/GDPR Incompliance", "Inefficient Auditing", "High Ingestion Costs", "Data Leak Liability"]
+        },
+        'slide-3': {
+          title: "Compliance Shield",
+          subtitle: "Shift data custody and compliance liability to the user. Integrate verified tokens instead of raw files.",
+          pills: ["Zero Storage Liabilities", "Automated Audits", "Standardized Matching", "Compliance Immunity"]
+        },
+        'slide-4': {
+          title: "Agentic Matcher",
+          subtitle: "Standardize unstructured documents across independent brokers, contact centers, and branch networks.",
+          pills: ["Disparate Channel Mapping", "Auto-Classification", "OCR Parsing", "Guided Metadata Override"]
+        },
+        'slide-5': {
+          title: "Dynamic Handshake",
+          subtitle: "Contractual compliance at point-of-ingestion. Auto-shred caches as soon as decision is made.",
+          pills: ["Self-Executing Purging", "Real-Time Compliance Logs", "GDPR Consent Handshake", "Vault Auditing"]
+        },
+        'slide-6': {
+          title: "Operational Lift",
+          subtitle: "Drive customer conversion rates by eliminating document upload friction from verification processes.",
+          pills: ["Instant Ingestion", "98% Conversion Rates", "Lower Admin Overhead", "Zero Identity Fraud"]
+        }
+      },
+      consumers: {
+        'slide-1': {
+          subtitle: "Control your identity. Sharing documents securely with single-click revocation.",
+          pills: ["Privacy First", "Absolute Control", "Instant Revocation"]
+        },
+        'slide-2': {
+          title: "Data Exploitation",
+          subtitle: "Large companies store your private documents forever on insecure servers, exposing you to identity theft.",
+          pills: ["Identity Theft Risk", "Zero Control", "Stolen Credentials", "Hidden Terms of Service"]
+        },
+        'slide-3': {
+          title: "Absolute Control",
+          subtitle: "Keep your files in your own secure vault. Share access temporarily, revoke it automatically.",
+          pills: ["Safe in Your Device", "Automatic Revocation", "Private Keys", "Encrypted Vault"]
+        },
+        'slide-4': {
+          title: "Smart Auto-Match",
+          subtitle: "Instant matching. One document automatically fulfills different provider forms.",
+          pills: ["Smart Mapping", "Zero Retries", "Simple Override", "No Ingestion Errors"]
+        },
+        'slide-5': {
+          title: "Automated Revocation",
+          subtitle: "Digital agreements that force the bank to delete your documents when they're done verifying.",
+          pills: ["Purge Countdown", "Real-Time Shredding", "Absolute Security", "Cryptographic Audit Trail"]
+        },
+        'slide-6': {
+          title: "Ultimate Freedom",
+          subtitle: "Reclaim your privacy without sacrificing convenience. One click to apply anywhere.",
+          pills: ["Single-Click Apply", "Complete Privacy", "No Identity Fraud", "Reuse Anywhere"]
+        }
+      },
+      engineers: {
+        'slide-1': {
+          subtitle: "Cryptographic document infrastructure with decentralized custody and self-executing deletion handshakes.",
+          pills: ["E2E Encryption", "Decentralized Storage", "Dynamic Schemas"]
+        },
+        'slide-2': {
+          title: "PII Honey Pots",
+          subtitle: "Legacy architectures accumulate unencrypted PII in centralized database silos, creating massive vulnerability.",
+          pills: ["Centralized Vulnerability", "Cleartext Database Silos", "Manual Purging Scripts", "Schema Inflexibility"]
+        },
+        'slide-3': {
+          title: "Decoupled Custody",
+          subtitle: "A sovereign storage layer serving zero-knowledge verification proofs and ephemeral data caches.",
+          pills: ["ZK-Verification Proofs", "Ephemeral Data Pipelines", "Decoupled Custody", "Sovereign KMS"]
+        },
+        'slide-4': {
+          title: "Agentic Matcher",
+          subtitle: "LLM-driven schema resolution with developer-guided metadata correction.",
+          pills: ["Dynamic JSON Schemas", "Vector Token Matching", "OCR Classification", "Guided Metadata Override"]
+        },
+        'slide-5': {
+          title: "Self-Executing Purge",
+          subtitle: "Ephemeral database pipelines with TTL parameters triggered by webhook status updates.",
+          pills: ["Webhook-Triggered Purge", "TTL Database Cache", "Cryptographic Auditing", "Signed Audit Receipt"]
+        },
+        'slide-6': {
+          title: "Open Infrastructure",
+          subtitle: "Developer-friendly APIs and widgets to integrate sovereign document sharing in under 10 lines of code.",
+          pills: ["RESTful API Integrations", "Webhook Event Triggers", "Pre-built Auth Widgets", "Zero DB Schema Modification"]
+        }
+      }
+    };
+
+    let activeCohort = 'investors';
+
     // Slide Navigation Logic
     const slides = document.querySelectorAll('.slide');
     const progressContainer = document.getElementById('deck-progress');
@@ -459,6 +742,74 @@
       } else if (e.key === 'ArrowLeft') {
         if (activeIndex > 0) gotoSlide(activeIndex - 1);
       }
+    });
+
+    // Cohort Content Switcher Logic
+    function updateCohortContent(cohort) {
+      activeCohort = cohort;
+      const data = cohortData[cohort];
+      if (!data) return;
+
+      const wrappers = document.querySelectorAll('.slide-content-wrapper');
+      wrappers.forEach(w => w.classList.add('fade-out'));
+
+      // Swap text and pills after fade-out transition completes (300ms)
+      setTimeout(() => {
+        Object.keys(data).forEach(slideId => {
+          const slide = document.getElementById(slideId);
+          if (!slide) return;
+
+          const titleEl = slide.querySelector('.keyword-hero');
+          const subtitleEl = slide.querySelector('.slide-subtitle');
+          const pillsContainer = slide.querySelector('.bullet-keywords');
+
+          // Update Title (except Slide 1 cover which has no dynamic title text swap)
+          if (titleEl && data[slideId].title && slideId !== 'slide-1') {
+            titleEl.textContent = data[slideId].title;
+          }
+
+          // Update Subtitle
+          if (subtitleEl && data[slideId].subtitle) {
+            subtitleEl.textContent = data[slideId].subtitle;
+          }
+
+          // Update Pills
+          if (pillsContainer && data[slideId].pills) {
+            pillsContainer.innerHTML = '';
+            
+            // Determine border color style classes per slide index
+            let borderClass = '';
+            if (slideId === 'slide-2') borderClass = 'red-border';
+            else if (slideId === 'slide-3') borderClass = 'green-border';
+            else if (slideId === 'slide-4') borderClass = 'purple-border';
+            else if (slideId === 'slide-5') borderClass = 'green-border';
+
+            data[slideId].pills.forEach(pillText => {
+              const pill = document.createElement('span');
+              pill.className = `keyword-pill ${borderClass}`.trim();
+              pill.textContent = pillText;
+              pillsContainer.appendChild(pill);
+            });
+          }
+        });
+
+        // Fade slide content wrappers back in
+        wrappers.forEach(w => w.classList.remove('fade-out'));
+      }, 300);
+    }
+
+    // Cohort button listeners
+    const cohortBtns = document.querySelectorAll('.cohort-btn');
+    cohortBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cohort = btn.getAttribute('data-cohort');
+        if (cohort === activeCohort) return;
+
+        cohortBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        updateCohortContent(cohort);
+      });
     });
   </script>
 </body>
