@@ -2151,3 +2151,266 @@ h1, h2, h3, h4, h5, h6, .font-glow-purple {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* ==========================================
+   RESPONSIVE DESIGN (MOBILE & TABLET ADJUSTMENTS)
+   ========================================== */
+
+/* Tablet Adjustments */
+@media (max-width: 992px) {
+  .vault-split-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .enterprise-policies-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .split-pane-simulator {
+    grid-template-columns: 1fr;
+  }
+
+  .live-tracker-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .sim-link-center {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .handshake-line-pulse {
+    display: none; /* Hide horizontal connector on stacked layout */
+  }
+
+  .simulation-controls {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .slide {
+    padding: 2rem 3rem;
+  }
+  
+  .keyword-hero {
+    font-size: 3.5rem;
+  }
+}
+
+/* Mobile Adjustments (Tab Bar / Stack Layout) */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  /* Transform sidebar to bottom tab nav bar for mobile screens */
+  .sidebar {
+    width: 100vw;
+    height: 70px;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 10px;
+    background-color: var(--bg-sidebar);
+    border-right: none;
+    border-top: 1px solid var(--border-color);
+    z-index: 1000;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .brand, .sidebar-tagline, .sidebar-footer, .nav-item span, .nav-item .badge {
+    display: none !important; /* Hide details on bottom tab bar to save screen space */
+  }
+
+  .nav-menu {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+    margin: 0;
+  }
+
+  .nav-item {
+    justify-content: center;
+    padding: 10px;
+    border-left: none !important;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-item.active {
+    border-bottom: 2px solid var(--primary);
+    background: transparent;
+    color: hsl(262, 100%, 75%);
+  }
+
+  .main-content {
+    padding: 1.5rem 1rem;
+    padding-bottom: 90px; /* offset for bottom tab bar */
+    height: calc(100vh - 70px);
+  }
+
+  .top-bar {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .page-title-section h2 {
+    font-size: 1.4rem;
+  }
+
+  .page-title-section .subtitle {
+    font-size: 0.8rem;
+  }
+
+  .user-profile .user-name {
+    display: none; /* Hide user name on small viewports */
+  }
+
+  /* Stack stats as 2x2 grid instead of 4 rows */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+
+  .stat-card {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .stat-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .stat-details .value {
+    font-size: 1.1rem;
+  }
+
+  .stat-details h3 {
+    font-size: 0.7rem;
+  }
+
+  .document-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .document-card {
+    padding: 10px;
+    height: 130px;
+  }
+
+  .doc-name {
+    font-size: 0.8rem;
+  }
+
+  .doc-meta {
+    font-size: 0.65rem;
+  }
+
+  .upload-zone {
+    padding: 1.5rem 1rem;
+  }
+
+  .simulation-upload-panel {
+    padding: 1rem;
+  }
+
+  .simulation-upload-panel div {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .simulation-upload-panel .btn {
+    width: 100%;
+  }
+
+  /* Slide Deck adjustments */
+  .slide {
+    padding: 1.5rem 1rem;
+  }
+
+  .keyword-hero {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .slide-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bullet-keywords {
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  .keyword-pill {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  .demo-spotlight {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .deck-controls {
+    padding: 1rem;
+  }
+
+  .deck-brand span {
+    font-size: 0.8rem;
+  }
+
+  .deck-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Extra Small Mobile Screen Adjustments */
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr; /* Stack stats on very small screens */
+  }
+
+  .document-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .handshake-comparison-box {
+    flex-direction: column;
+  }
+
+  .handshake-contract-sheet {
+    padding: 1rem;
+  }
+  
+  .contract-parties-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contract-policies-table th,
+  .contract-policies-table td {
+    padding: 6px 4px;
+    font-size: 0.7rem;
+  }
+}
