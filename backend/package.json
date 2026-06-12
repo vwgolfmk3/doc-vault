@@ -1,0 +1,18 @@
+{
+  "name": "doc-vault-backend",
+  "version": "1.0.0",
+  "description": "Production API and cryptographic services backend for Doc Vault",
+  "main": "src/api/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/api/server.js",
+    "test:crypto": "node test-crypto.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {},
+  "author": "Doc Vault",
+  "license": "MIT"
+}
